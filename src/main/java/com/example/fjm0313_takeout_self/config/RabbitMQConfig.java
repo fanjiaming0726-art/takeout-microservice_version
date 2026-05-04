@@ -95,6 +95,27 @@ public class RabbitMQConfig {
         return BindingBuilder.bind(orderDlxQueue).to(orderDlxExchange).with(ORDER_DLX_ROUTING_KEY);
     }
 
+    // ==================== 商家端新订单通知 ====================
+    public static final String ORDER_NOTIFY_EXCHANGE = "order.notify.exchange";
+    public static final String ORDER_NOTIFY_QUEUE  = "order.notify.queue";
+    public static final String ORDER_NOTIFY_ROUTINE_KEY = "order.notify";
+
+    @Bean
+    public DirectExchange orderNotifyExchange(){
+        return new DirectExchange(ORDER_NOTIFY_EXCHANGE);
+    }
+
+    @Bean
+    public Queue orderNotifyQueue(){
+        return QueueBuilder.durable(ORDER_NOTIFY_QUEUE).build();
+    }
+
+    @Bean
+    public Binding orderNotifyBinding(Queue orderNotifyQueue, DirectExchange orderNotifyExchange){
+        return BindingBuilder.bind(orderNotifyQueue).to(orderNotifyExchange).with(ORDER_NOTIFY_ROUTINE_KEY);
+    }
+
+
 
     @Bean
     public MessageConverter messageConverter(){
