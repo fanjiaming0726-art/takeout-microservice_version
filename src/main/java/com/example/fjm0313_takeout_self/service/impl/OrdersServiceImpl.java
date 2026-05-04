@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.example.fjm0313_takeout_self.common.MQ.message.OrderNotifyMessage;
 import com.example.fjm0313_takeout_self.common.MQ.sender.OrderNotifySender;
 import com.example.fjm0313_takeout_self.common.MQ.sender.OrderTimeoutSender;
+import com.example.fjm0313_takeout_self.common.UserContext;
 import com.example.fjm0313_takeout_self.entity.*;
 import com.example.fjm0313_takeout_self.mapper.*;
 import com.example.fjm0313_takeout_self.service.DishService;
@@ -182,5 +183,48 @@ public class OrdersServiceImpl implements OrdersService {
     @Override
     public Orders findById(Long orderId) {
         return ordersMapper.selectById(orderId);
+    }
+
+    @Override
+    @Transactional
+    public String pay(Long orderId) {
+        try {
+            Long userId = UserContext.getUserId();
+            Orders order = findById(orderId);
+            if (order == null) {
+                return "订单不存在";
+            }
+            if (!order.getUserId().equals(userId)) {
+                return "无权操作此订单";
+            }
+            if (order.getStatus() != 0) {
+                return "订单状态不正确，无法支付";
+            }
+
+            order.setStatus(1);
+            ordersMapper.updateById(order);
+
+            OrderNotifyMessage notifyMessage = new OrderNotifyMessage();
+            notifyMessage.setOrderId(order.getId());
+            notifyMessage.setOrderNumber(order.getNumber());
+            notifyMessage.setUserId(order.getUserId());
+            notifyMessage.setUsername(order.getUsername());
+            notifyMessage.setAmount(order.getAmount());
+            notifyMessage.setConsignee(order.getConsignee());
+            notifyMessage.setPhone(order.getPhone());
+            notifyMessage.setAddress(order.getAddress());
+            notifyMessage.setRemark(order.getRemark());
+
+            TransactionSynchronizationManager.registerSynchronization(new TransactionSynchronization() {
+                @Override
+                public void afterCommit() {
+                    orderNotifySender.sendNewOrderMessage(notifyMessage);
+                }
+            });
+
+            return "支付成功";
+        } catch (RuntimeException e) {
+            return e.getMessage();
+        }
     }
 }
