@@ -1,7 +1,9 @@
 package com.example.fjm0313_takeout_self.service.impl;
 
 import com.example.fjm0313_takeout_self.entity.Dish;
+import com.example.fjm0313_takeout_self.es.repository.DishSearchRepository;
 import com.example.fjm0313_takeout_self.mapper.DishMapper;
+import com.example.fjm0313_takeout_self.service.DishSearchService;
 import com.example.fjm0313_takeout_self.service.DishService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.cache.CacheProperties;
@@ -21,6 +23,9 @@ public class DishServiceImpl implements DishService {
     @Autowired
     private RedisTemplate<String, Object> redisTemplate;
 
+    @Autowired
+    private DishSearchService dishSearchService;
+
     private final static String DISH_LIST_KEY = "dish:list";
 
     @Override
@@ -34,12 +39,18 @@ public class DishServiceImpl implements DishService {
     public void addDish(Dish dish) {
         dishMapper.insert(dish);
         redisTemplate.delete(DISH_LIST_KEY);
+        dishSearchService.saveDishToEs(dish.getId());
+
     }
 
     @Override
     public void deleteDishByIds(List<Long> ids) {
         dishMapper.deleteBatchIds(ids);
         redisTemplate.delete(DISH_LIST_KEY);
+        for(Long id : ids){
+            dishSearchService.deleteDishFromEs(id);
+        }
+
     }
 
     @Override
@@ -63,6 +74,7 @@ public class DishServiceImpl implements DishService {
     public void updateDish(Dish dish) {
         dishMapper.updateById(dish);
         redisTemplate.delete(DISH_LIST_KEY);
+        dishSearchService.saveDishToEs(dish.getId());
     }
 
     @Override
