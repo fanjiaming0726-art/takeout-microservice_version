@@ -94,7 +94,7 @@ public class SeckillOrderConsumer {
 
         }catch (Exception e){
             System.out.println("秒杀订单处理失败：" + e.getMessage());
-
+            throw e;
         }
     }
 

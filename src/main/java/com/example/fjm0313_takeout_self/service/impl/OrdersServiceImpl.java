@@ -124,7 +124,9 @@ public class OrdersServiceImpl implements OrdersService {
 
         ordersMapper.insert(orders);
 
-        orderTimeoutSender.sendOrderTimeoutMessage(orders.getId(),"NORMAL");
+        Long orderId = orders.getId();
+
+
 
         // 6. 保存订单明细
         for (ShoppingCart cart : cartList) {
@@ -149,23 +151,13 @@ public class OrdersServiceImpl implements OrdersService {
         cartMapper.delete(cartWrapper);
 
 
-        // 8. 向商家发送订单消息
-        OrderNotifyMessage notifyMessage = new OrderNotifyMessage();
-        notifyMessage.setOrderId(orders.getId());
-        notifyMessage.setOrderNumber(orders.getNumber());
-        notifyMessage.setUsername(orders.getUsername());
-        notifyMessage.setAmount(orders.getAmount());
-        notifyMessage.setConsignee(orders.getConsignee());
-        notifyMessage.setPhone(orders.getPhone());
-        notifyMessage.setAddress(orders.getAddress());
-        notifyMessage.setRemark(orders.getRemark());
-
         TransactionSynchronizationManager.registerSynchronization(new TransactionSynchronization() {
             @Override
             public void afterCommit() {
-                orderNotifySender.sendNewOrderMessage(notifyMessage);
+                orderTimeoutSender.sendOrderTimeoutMessage(orderId, "NORMAL");
             }
         });
+
 
         return orders;
     }

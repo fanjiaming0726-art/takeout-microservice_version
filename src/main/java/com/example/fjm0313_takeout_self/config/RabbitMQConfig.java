@@ -53,6 +53,7 @@ public class RabbitMQConfig {
     public static final String ORDER_DELAY_ROUTING_KEY = "order.delay";
     public static final String ORDER_DLX_ROUTING_KEY = "order.dlx";
 
+    // 测试：30秒
     public static final int  ORDER_TTL = 30 * 1000;
 
     @Bean
