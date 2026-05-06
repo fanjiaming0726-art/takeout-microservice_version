@@ -131,7 +131,7 @@ public class OrdersServiceImpl implements OrdersService {
         // 6. 保存订单明细
         for (ShoppingCart cart : cartList) {
             OrderDetail detail = new OrderDetail();
-            detail.setOrderId(orders.getId());
+            detail.setOrderId(orderId);
             detail.setName(cart.getName());
             detail.setImage(cart.getImage());
             detail.setDishId(cart.getDishId());

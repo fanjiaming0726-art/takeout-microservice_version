@@ -1,4 +1,4 @@
-package com.example.fjm0313_takeout_self.common.MQ.websocket;
+package com.example.fjm0313_takeout_self.common.websocket;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.stereotype.Service;
@@ -49,7 +49,7 @@ public class SellerOrderWebSocketHandler implements WebSocketHandler {
         return false;
     }
 
-    public void sendToALlSellers(Object data){
+    public void sendToAllSellers(Object data){
         try{
             // 将data对象转换成json字符串对象
             String json = objectMapper.writeValueAsString(data);

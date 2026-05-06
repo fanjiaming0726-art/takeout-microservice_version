@@ -98,7 +98,9 @@ public class ReviewServiceImpl implements ReviewService {
         review.setRating(dto.getRating());
         review.setContent(dto.getContent());
         review.setImageUrls(dto.getImageUrls());
-        review.setAnonymous(dto.getAnonymous());
+
+        // 默认不匿名
+        review.setAnonymous(dto.getAnonymous() != null && dto.getAnonymous());
         review.setCreateTime(LocalDateTime.now());
 
         return reviewRepository.save(review);

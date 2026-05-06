@@ -99,7 +99,7 @@ public class RabbitMQConfig {
     // ==================== 商家端新订单通知 ====================
     public static final String ORDER_NOTIFY_EXCHANGE = "order.notify.exchange";
     public static final String ORDER_NOTIFY_QUEUE  = "order.notify.queue";
-    public static final String ORDER_NOTIFY_ROUTINE_KEY = "order.notify";
+    public static final String ORDER_NOTIFY_ROUTING_KEY = "order.notify";
 
     @Bean
     public DirectExchange orderNotifyExchange(){
@@ -113,7 +113,7 @@ public class RabbitMQConfig {
 
     @Bean
     public Binding orderNotifyBinding(Queue orderNotifyQueue, DirectExchange orderNotifyExchange){
-        return BindingBuilder.bind(orderNotifyQueue).to(orderNotifyExchange).with(ORDER_NOTIFY_ROUTINE_KEY);
+        return BindingBuilder.bind(orderNotifyQueue).to(orderNotifyExchange).with(ORDER_NOTIFY_ROUTING_KEY);
     }
 
 

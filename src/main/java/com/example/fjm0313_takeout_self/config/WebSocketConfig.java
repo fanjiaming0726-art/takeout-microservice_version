@@ -1,6 +1,6 @@
 package com.example.fjm0313_takeout_self.config;
 
-import com.example.fjm0313_takeout_self.common.MQ.websocket.SellerOrderWebSocketHandler;
+import com.example.fjm0313_takeout_self.common.websocket.SellerOrderWebSocketHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.socket.config.annotation.EnableWebSocket;

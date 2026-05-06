@@ -1,7 +1,7 @@
 package com.example.fjm0313_takeout_self.common.MQ.consumer;
 
 import com.example.fjm0313_takeout_self.common.MQ.message.OrderNotifyMessage;
-import com.example.fjm0313_takeout_self.common.MQ.websocket.SellerOrderWebSocketHandler;
+import com.example.fjm0313_takeout_self.common.websocket.SellerOrderWebSocketHandler;
 import com.example.fjm0313_takeout_self.config.RabbitMQConfig;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 
@@ -18,7 +18,7 @@ public class OrderNotifyConsumer {
     public void handleNewOrderMessage(OrderNotifyMessage message){
         System.out.println("收到新订单通知消息：orderId=" + message.getOrderId());
 
-        sellerOrderWebSocketHandler.sendToALlSellers(message);
+        sellerOrderWebSocketHandler.sendToAllSellers(message);
     }
 
 }

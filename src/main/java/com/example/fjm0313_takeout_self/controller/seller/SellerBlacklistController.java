@@ -14,7 +14,7 @@ import java.util.Set;
 
 @RestController
 @RequestMapping("/seller/blacklist")
-public class sellerBlacklistController {
+public class SellerBlacklistController {
 
     @Autowired
     private BlackListService blackListService;
