@@ -55,7 +55,7 @@ public class CustomerOrderController {
     }
 
     @LoginRequired("CUSTOMER")
-    @PostMapping("/pay/{orderId}")
+    @PutMapping("/pay/{orderId}")
     public Result<String> pay(@PathVariable Long orderId){
         String result = ordersService.pay(orderId);
         if (result.equals("支付成功")){

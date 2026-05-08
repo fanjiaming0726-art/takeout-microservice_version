@@ -15,7 +15,7 @@ public class OrderNotifySender {
     public void sendNewOrderMessage(OrderNotifyMessage message){
         rabbitTemplate.convertAndSend(
                 RabbitMQConfig.ORDER_NOTIFY_EXCHANGE,
-                RabbitMQConfig.ORDER_NOTIFY_ROUTINE_KEY,
+                RabbitMQConfig.ORDER_NOTIFY_ROUTING_KEY,
                 message
         );
 
