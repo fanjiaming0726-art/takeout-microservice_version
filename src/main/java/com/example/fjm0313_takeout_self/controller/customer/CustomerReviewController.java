@@ -1,9 +1,9 @@
 package com.example.fjm0313_takeout_self.controller.customer;
 
 
-import com.example.fjm0313_takeout_self.common.LoginRequired;
-import com.example.fjm0313_takeout_self.common.Result;
-import com.example.fjm0313_takeout_self.common.UserContext;
+import com.example.commonservice.annotation.LoginRequired;
+import com.example.commonservice.result.Result;
+import com.example.commonservice.context.UserContext;
 import com.example.fjm0313_takeout_self.dto.ReviewSubmitDto;
 import com.example.fjm0313_takeout_self.mongo.Review;
 import com.example.fjm0313_takeout_self.service.ReviewService;

@@ -1,9 +1,8 @@
 package com.example.fjm0313_takeout_self.controller.customer;
 
-import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.example.fjm0313_takeout_self.common.LoginRequired;
-import com.example.fjm0313_takeout_self.common.Result;
-import com.example.fjm0313_takeout_self.common.UserContext;
+import com.example.commonservice.annotation.LoginRequired;
+import com.example.commonservice.result.Result;
+import com.example.commonservice.context.UserContext;
 import com.example.fjm0313_takeout_self.vo.OrdersVO;
 import com.example.fjm0313_takeout_self.entity.*;
 import com.example.fjm0313_takeout_self.service.*;
@@ -11,9 +10,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.math.BigDecimal;
 import java.util.List;
-import java.util.UUID;
 
 @RestController
 @RequestMapping("customer/orders")

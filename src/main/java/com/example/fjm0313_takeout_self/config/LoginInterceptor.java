@@ -1,9 +1,9 @@
 package com.example.fjm0313_takeout_self.config;
 
 
-import com.example.fjm0313_takeout_self.common.LoginRequired;
-import com.example.fjm0313_takeout_self.common.Result;
-import com.example.fjm0313_takeout_self.common.UserContext;
+import com.example.commonservice.annotation.LoginRequired;
+import com.example.commonservice.result.Result;
+import com.example.commonservice.context.UserContext;
 import com.example.fjm0313_takeout_self.service.BlackListService;
 import com.example.fjm0313_takeout_self.service.RedisLimitService;
 import com.fasterxml.jackson.databind.ObjectMapper;

@@ -1,7 +1,7 @@
 package com.example.fjm0313_takeout_self.controller.seller;
 
-import com.example.fjm0313_takeout_self.common.LoginRequired;
-import com.example.fjm0313_takeout_self.common.Result;
+import com.example.commonservice.annotation.LoginRequired;
+import com.example.commonservice.result.Result;
 import com.example.fjm0313_takeout_self.vo.OrdersVO;
 import com.example.fjm0313_takeout_self.entity.OrderDetail;
 import com.example.fjm0313_takeout_self.entity.Orders;
