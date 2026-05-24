@@ -7,16 +7,13 @@ import com.example.fjm0313_takeout_self.es.repository.DishSearchRepository;
 import com.example.fjm0313_takeout_self.mapper.CateGoryMapper;
 import com.example.fjm0313_takeout_self.mapper.DishMapper;
 import com.example.fjm0313_takeout_self.service.DishSearchService;
-import io.netty.util.internal.StringUtil;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.data.elasticsearch.client.elc.NativeQuery;
 import org.springframework.data.elasticsearch.core.ElasticsearchOperations;
 import org.springframework.data.elasticsearch.core.SearchHit;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.ArrayList;
 import java.util.List;

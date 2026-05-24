@@ -36,3 +36,10 @@ mybatis-plus:
 
 server:
   port: 8081
+
+ai:
+  deepseek:
+    agent:
+      apikey: sk-f02f1caa5e0d489c902c50e44a198bc4
+      base-url: https://api.deepseek.com/chat/completions
+      model: deepseek-chat
