@@ -1,0 +1,29 @@
+package com.example.fjm0313_takeout_self.controller.seller;
+
+import com.example.commonservice.annotation.LoginRequired;
+import com.example.commonservice.result.Result;
+import com.example.fjm0313_takeout_self.service.RankingService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
+import java.util.Map;
+
+@RestController
+@RequestMapping("/seller/ranking")
+public class SellerRankingController {
+
+    @Autowired
+    private RankingService rankingService;
+
+    @LoginRequired("EMPLOYEE")
+    @PostMapping("/top")
+    public Result<List<Map<String, Object>>> top(@RequestParam(defaultValue = "10") int n){
+        return Result.success(rankingService.getTopN(n));
+    }
+
+
+}
