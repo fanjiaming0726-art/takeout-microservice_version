@@ -1,8 +1,8 @@
-package com.example.fjm0313_takeout_self.common.MQ.consumer;
+package com.example.fjm0313_takeout_self.common.mq.consumer;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.example.fjm0313_takeout_self.common.MQ.message.SeckillMessage;
-import com.example.fjm0313_takeout_self.common.MQ.sender.OrderTimeoutSender;
+import com.example.fjm0313_takeout_self.common.mq.message.SeckillMessage;
+import com.example.fjm0313_takeout_self.common.mq.sender.OrderTimeoutSender;
 import com.example.fjm0313_takeout_self.config.RabbitMQConfig;
 import com.example.fjm0313_takeout_self.entity.AddressBook;
 import com.example.fjm0313_takeout_self.entity.SeckillActivity;

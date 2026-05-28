@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.*;
 
-import static com.example.fjm0313_takeout_self.common.RedisConstant.RANKING_KEY;
+import static com.example.commonservice.redis.RedisConstant.RANKING_KEY;
 
 @Service
 public class RankingServiceImpl implements RankingService {

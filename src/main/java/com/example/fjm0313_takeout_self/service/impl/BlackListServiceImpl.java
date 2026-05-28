@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
-import static com.example.fjm0313_takeout_self.common.RedisConstant.*;
+import static com.example.commonservice.redis.RedisConstant.*;
 
 @Service
 public class BlackListServiceImpl implements BlackListService {

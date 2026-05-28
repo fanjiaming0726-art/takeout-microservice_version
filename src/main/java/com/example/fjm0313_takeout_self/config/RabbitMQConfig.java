@@ -4,6 +4,7 @@ package com.example.fjm0313_takeout_self.config;
 import org.springframework.amqp.core.*;
 import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
 import org.springframework.amqp.support.converter.MessageConverter;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.cglib.core.Converter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -39,7 +40,7 @@ public class RabbitMQConfig {
     }
 
     @Bean
-    public Binding seckillOrderBinding(Queue seckillOrderQueue, DirectExchange seckillExchange){
+    public Binding seckillOrderBinding(@Qualifier("seckillOrderQueue") Queue seckillOrderQueue, @Qualifier("seckillExchange") DirectExchange seckillExchange){
         return BindingBuilder.bind(seckillOrderQueue).to(seckillExchange).with(SECKILL_ORDER_ROUTING_KEY);
     }
 
@@ -86,13 +87,13 @@ public class RabbitMQConfig {
 
     @Bean
     // bind queue to exchange with key
-    public Binding orderDelayBinding(Queue orderDelayQueue, DirectExchange orderDelayExchange) {
+    public Binding orderDelayBinding(@Qualifier("orderDelayQueue") Queue orderDelayQueue, @Qualifier("orderDelayExchange") DirectExchange orderDelayExchange) {
         return BindingBuilder.bind(orderDelayQueue).to(orderDelayExchange).with(ORDER_DELAY_ROUTING_KEY);
     }
 
 
     @Bean
-    public Binding orderDlxBinding(Queue orderDlxQueue, DirectExchange orderDlxExchange) {
+    public Binding orderDlxBinding(@Qualifier("orderDlxQueue") Queue orderDlxQueue, @Qualifier("orderDlxExchange") DirectExchange orderDlxExchange) {
         return BindingBuilder.bind(orderDlxQueue).to(orderDlxExchange).with(ORDER_DLX_ROUTING_KEY);
     }
 
@@ -112,7 +113,7 @@ public class RabbitMQConfig {
     }
 
     @Bean
-    public Binding orderNotifyBinding(Queue orderNotifyQueue, DirectExchange orderNotifyExchange){
+    public Binding orderNotifyBinding(@Qualifier("orderNotifyQueue") Queue orderNotifyQueue, @Qualifier("orderNotifyExchange") DirectExchange orderNotifyExchange){
         return BindingBuilder.bind(orderNotifyQueue).to(orderNotifyExchange).with(ORDER_NOTIFY_ROUTING_KEY);
     }
 

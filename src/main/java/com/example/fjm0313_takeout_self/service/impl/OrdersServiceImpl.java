@@ -1,9 +1,9 @@
 package com.example.fjm0313_takeout_self.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.example.fjm0313_takeout_self.common.MQ.message.OrderNotifyMessage;
-import com.example.fjm0313_takeout_self.common.MQ.sender.OrderNotifySender;
-import com.example.fjm0313_takeout_self.common.MQ.sender.OrderTimeoutSender;
+import com.example.fjm0313_takeout_self.common.mq.message.OrderNotifyMessage;
+import com.example.fjm0313_takeout_self.common.mq.sender.OrderNotifySender;
+import com.example.fjm0313_takeout_self.common.mq.sender.OrderTimeoutSender;
 import com.example.commonservice.context.UserContext;
 import com.example.fjm0313_takeout_self.entity.*;
 import com.example.fjm0313_takeout_self.mapper.*;

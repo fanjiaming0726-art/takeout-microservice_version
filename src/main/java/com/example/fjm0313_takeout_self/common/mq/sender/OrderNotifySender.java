@@ -1,6 +1,6 @@
-package com.example.fjm0313_takeout_self.common.MQ.sender;
+package com.example.fjm0313_takeout_self.common.mq.sender;
 
-import com.example.fjm0313_takeout_self.common.MQ.message.OrderNotifyMessage;
+import com.example.fjm0313_takeout_self.common.mq.message.OrderNotifyMessage;
 import com.example.fjm0313_takeout_self.config.RabbitMQConfig;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;

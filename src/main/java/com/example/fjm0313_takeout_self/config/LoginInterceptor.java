@@ -14,8 +14,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 
-import static com.example.fjm0313_takeout_self.common.RedisConstant.MAX_REQUEST;
-import static com.example.fjm0313_takeout_self.common.RedisConstant.WINDOW_SECONDS;
+import static com.example.commonservice.redis.RedisConstant.MAX_REQUEST;
+import static com.example.commonservice.redis.RedisConstant.WINDOW_SECONDS;
 
 @Component
 public class LoginInterceptor implements HandlerInterceptor {

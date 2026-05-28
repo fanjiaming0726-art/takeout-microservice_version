@@ -1,4 +1,4 @@
-package com.example.fjm0313_takeout_self.common.MQ.message;
+package com.example.fjm0313_takeout_self.common.mq.message;
 
 import lombok.Data;
 

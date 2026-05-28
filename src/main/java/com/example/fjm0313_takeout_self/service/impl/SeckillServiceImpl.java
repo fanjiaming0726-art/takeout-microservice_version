@@ -16,8 +16,8 @@ import java.util.Arrays;
 import java.util.List;
 
 
-import static com.example.fjm0313_takeout_self.common.RedisConstant.SECKILL_STOCK_KEY;
-import static com.example.fjm0313_takeout_self.common.RedisConstant.SECKILL_USERS_KEY;
+import static com.example.commonservice.redis.RedisConstant.SECKILL_STOCK_KEY;
+import static com.example.commonservice.redis.RedisConstant.SECKILL_USERS_KEY;
 
 @Service
 public class SeckillServiceImpl implements SeckillService {

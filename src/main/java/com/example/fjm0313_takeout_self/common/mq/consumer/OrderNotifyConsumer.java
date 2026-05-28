@@ -1,6 +1,6 @@
-package com.example.fjm0313_takeout_self.common.MQ.consumer;
+package com.example.fjm0313_takeout_self.common.mq.consumer;
 
-import com.example.fjm0313_takeout_self.common.MQ.message.OrderNotifyMessage;
+import com.example.fjm0313_takeout_self.common.mq.message.OrderNotifyMessage;
 import com.example.fjm0313_takeout_self.common.websocket.SellerOrderWebSocketHandler;
 import com.example.fjm0313_takeout_self.config.RabbitMQConfig;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;

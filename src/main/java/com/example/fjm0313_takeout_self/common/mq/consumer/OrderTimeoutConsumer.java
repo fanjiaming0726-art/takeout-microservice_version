@@ -1,7 +1,7 @@
-package com.example.fjm0313_takeout_self.common.MQ.consumer;
+package com.example.fjm0313_takeout_self.common.mq.consumer;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.example.fjm0313_takeout_self.common.MQ.message.OrderTimeoutMessage;
+import com.example.fjm0313_takeout_self.common.mq.message.OrderTimeoutMessage;
 import com.example.fjm0313_takeout_self.config.RabbitMQConfig;
 import com.example.fjm0313_takeout_self.entity.OrderDetail;
 import com.example.fjm0313_takeout_self.entity.Orders;
