@@ -154,7 +154,7 @@ public class OrdersServiceImpl implements OrdersService {
         TransactionSynchronizationManager.registerSynchronization(new TransactionSynchronization() {
             @Override
             public void afterCommit() {
-                orderTimeoutSender.sendOrderTimeoutMessage(orderId, "NORMAL");
+                orderTimeoutSender.sendOrderTimeoutMessage(orderId);
             }
         });
 

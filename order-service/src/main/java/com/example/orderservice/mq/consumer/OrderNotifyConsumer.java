@@ -13,7 +13,7 @@ public class OrderNotifyConsumer {
     @Autowired
     private SellerOrderWebSocketHandler sellerOrderWebSocketHandler;
 
-    @RabbitListener(queues = RabbitMQConfig.ORDER_NOTIFY_QUEUE)
+    @RabbitListener(queues = RabbitMQConfig.NORMAL_ORDER_NOTIFY_QUEUE)
     public void handleNewOrderMessage(OrderNotifyMessage message){
         System.out.println("收到新订单通知消息：orderId=" + message.getOrderId());
 

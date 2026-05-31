@@ -1,13 +1,12 @@
-package com.example.orderservice.mq.message;
+package com.example.seckillservice.mq.message;
 
 import lombok.Data;
 
 import java.io.Serializable;
 
 @Data
-public class OrderTimeoutMessage implements Serializable {
+public class SeckillOrderTimeoutMessage implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private Long orderId;
-
 }

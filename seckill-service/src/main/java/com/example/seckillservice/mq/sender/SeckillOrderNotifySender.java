@@ -1,21 +1,21 @@
-package com.example.orderservice.mq.sender;
+package com.example.seckillservice.mq.sender;
 
-import com.example.orderservice.mq.message.OrderNotifyMessage;
-import com.example.orderservice.config.RabbitMQConfig;
+import com.example.seckillservice.config.RabbitMQConfig;
+import com.example.seckillservice.mq.message.SeckillOrderNotifyMessage;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class OrderNotifySender {
+public class SeckillOrderNotifySender {
 
     @Autowired
     private RabbitTemplate rabbitTemplate;
 
-    public void sendNewOrderMessage(OrderNotifyMessage message){
+    public void sendNewOrderMessage(SeckillOrderNotifyMessage message){
         rabbitTemplate.convertAndSend(
-                RabbitMQConfig.NORMAL_ORDER_NOTIFY_EXCHANGE,
-                RabbitMQConfig.NORMAL_ORDER_NOTIFY_ROUTING_KEY,
+                RabbitMQConfig.SECKILL_ORDER_NOTIFY_EXCHANGE,
+                RabbitMQConfig.SECKILL_ORDER_NOTIFY_ROUTING_KEY,
                 message
         );
 

@@ -16,104 +16,77 @@ import java.util.Map;
 public class RabbitMQConfig {
 
 
-    // ==================== 秒杀（已有） ====================
-    // 交换机名称
-    public static final String SECKILL_EXCHANGE = "seckill.exchange";
-
-    // 队列名称
-    public static final String SECKILL_ORDER_QUEUE = "seckill.order.queue";
-
-    // 路由键
-    public static final String SECKILL_ORDER_ROUTING_KEY = "seckill.order";
-
-
-    @Bean
-    public Queue seckillOrderQueue(){
-        return new Queue(SECKILL_ORDER_QUEUE,true);
-    }
-
-    @Bean
-    public DirectExchange seckillExchange(){
-        return new DirectExchange(SECKILL_EXCHANGE);
-
-    }
-
-    @Bean
-    public Binding seckillOrderBinding(@Qualifier("seckillOrderQueue") Queue seckillOrderQueue, @Qualifier("seckillExchange") DirectExchange seckillExchange){
-        return BindingBuilder.bind(seckillOrderQueue).to(seckillExchange).with(SECKILL_ORDER_ROUTING_KEY);
-    }
-
     // ==================== 订单延迟取消 ====================
-    public static final String ORDER_DELAY_EXCHANGE =  "order.delay.exchange";
-    public static final String ORDER_DLX_EXCHANGE = "order.dlx.exchange";
+    public static final String NORMAL_ORDER_DELAY_EXCHANGE =  "normalOrder.delay.exchange";
+    public static final String NORMAL_ORDER_DLX_EXCHANGE = "normalOrder.dlx.exchange";
 
-    public static final String ORDER_DELAY_QUEUE =  "order.delay.queue";
-    public static final String ORDER_DLX_QUEUE = "order.dlx.queue";
+    public static final String NORMAL_ORDER_DELAY_QUEUE =  "normalOrder.delay.queue";
+    public static final String NORMAL_ORDER_DLX_QUEUE = "normalOrder.dlx.queue";
 
-    public static final String ORDER_DELAY_ROUTING_KEY = "order.delay";
-    public static final String ORDER_DLX_ROUTING_KEY = "order.dlx";
+    public static final String NORMAL_ORDER_DELAY_ROUTING_KEY = "normalOrder.delay";
+    public static final String NORMAL_ORDER_DLX_ROUTING_KEY = "normalOrder.dlx";
 
     // 测试：30秒
-    public static final int  ORDER_TTL = 30 * 1000;
+    public static final int  NORMAL_ORDER_TTL = 30 * 1000;
 
     @Bean
-    public DirectExchange orderDelayExchange (){
-        return new DirectExchange(ORDER_DELAY_EXCHANGE);
+    public DirectExchange normalOrderDelayExchange (){
+        return new DirectExchange(NORMAL_ORDER_DELAY_EXCHANGE);
     }
 
     @Bean
-    public DirectExchange orderDlxExchange(){
-        return new DirectExchange(ORDER_DLX_EXCHANGE);
+    public DirectExchange normalOrderDlxExchange(){
+        return new DirectExchange(NORMAL_ORDER_DLX_EXCHANGE);
     }
 
 
     @Bean
-    public Queue orderDelayQueue() {
+    public Queue normalOrderDelayQueue() {
         Map<String, Object> args = new LinkedHashMap<>();
-        args.put("x-dead-letter-exchange",ORDER_DLX_EXCHANGE);
-        args.put("x-dead-letter-routing-key",ORDER_DLX_ROUTING_KEY);
-        args.put("x-message-ttl",ORDER_TTL);
-        return QueueBuilder.durable(ORDER_DELAY_QUEUE).withArguments(args).build();
+        args.put("x-dead-letter-exchange",NORMAL_ORDER_DLX_EXCHANGE);
+        args.put("x-dead-letter-routing-key",NORMAL_ORDER_DLX_ROUTING_KEY);
+        args.put("x-message-ttl",NORMAL_ORDER_TTL);
+        return QueueBuilder.durable(NORMAL_ORDER_DELAY_QUEUE).withArguments(args).build();
 
     }
 
 
     @Bean
-    public Queue orderDlxQueue(){
-        return new Queue(ORDER_DLX_QUEUE,true);
+    public Queue normalOrderDlxQueue(){
+        return new Queue(NORMAL_ORDER_DLX_QUEUE,true);
     }
 
 
     @Bean
     // bind queue to exchange with key
-    public Binding orderDelayBinding(@Qualifier("orderDelayQueue") Queue orderDelayQueue, @Qualifier("orderDelayExchange") DirectExchange orderDelayExchange) {
-        return BindingBuilder.bind(orderDelayQueue).to(orderDelayExchange).with(ORDER_DELAY_ROUTING_KEY);
+    public Binding normalOrderDelayBinding(@Qualifier("normalOrderDelayQueue") Queue orderDelayQueue, @Qualifier("normalOrderDelayExchange") DirectExchange orderDelayExchange) {
+        return BindingBuilder.bind(orderDelayQueue).to(orderDelayExchange).with(NORMAL_ORDER_DELAY_ROUTING_KEY);
     }
 
 
     @Bean
-    public Binding orderDlxBinding(@Qualifier("orderDlxQueue") Queue orderDlxQueue, @Qualifier("orderDlxExchange") DirectExchange orderDlxExchange) {
-        return BindingBuilder.bind(orderDlxQueue).to(orderDlxExchange).with(ORDER_DLX_ROUTING_KEY);
+    public Binding normalOrderDlxBinding(@Qualifier("normalOrderDlxQueue") Queue orderDlxQueue, @Qualifier("normalOrderDlxExchange") DirectExchange orderDlxExchange) {
+        return BindingBuilder.bind(orderDlxQueue).to(orderDlxExchange).with(NORMAL_ORDER_DLX_ROUTING_KEY);
     }
 
     // ==================== 商家端新订单通知 ====================
-    public static final String ORDER_NOTIFY_EXCHANGE = "order.notify.exchange";
-    public static final String ORDER_NOTIFY_QUEUE  = "order.notify.queue";
-    public static final String ORDER_NOTIFY_ROUTING_KEY = "order.notify";
+    public static final String NORMAL_ORDER_NOTIFY_EXCHANGE = "normalOrder.notify.exchange";
+    public static final String NORMAL_ORDER_NOTIFY_QUEUE  = "normalOrder.notify.queue";
+    public static final String NORMAL_ORDER_NOTIFY_ROUTING_KEY = "normalOrder.notify";
 
     @Bean
-    public DirectExchange orderNotifyExchange(){
-        return new DirectExchange(ORDER_NOTIFY_EXCHANGE);
+    public DirectExchange normalOrderNotifyExchange(){
+        return new DirectExchange(NORMAL_ORDER_NOTIFY_EXCHANGE);
     }
 
     @Bean
-    public Queue orderNotifyQueue(){
-        return QueueBuilder.durable(ORDER_NOTIFY_QUEUE).build();
+    public Queue normalOrderNotifyQueue(){
+        return QueueBuilder.durable(NORMAL_ORDER_NOTIFY_QUEUE).build();
     }
 
     @Bean
-    public Binding orderNotifyBinding(@Qualifier("orderNotifyQueue") Queue orderNotifyQueue, @Qualifier("orderNotifyExchange") DirectExchange orderNotifyExchange){
-        return BindingBuilder.bind(orderNotifyQueue).to(orderNotifyExchange).with(ORDER_NOTIFY_ROUTING_KEY);
+    public Binding normalOrderNotifyBinding(@Qualifier("normalOrderNotifyQueue") Queue orderNotifyQueue, @Qualifier("normalOrderNotifyExchange") DirectExchange orderNotifyExchange){
+        return BindingBuilder.bind(orderNotifyQueue).to(orderNotifyExchange).with(NORMAL_ORDER_NOTIFY_ROUTING_KEY);
     }
 
 

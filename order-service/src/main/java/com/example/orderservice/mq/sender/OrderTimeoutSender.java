@@ -12,19 +12,18 @@ public class OrderTimeoutSender {
     @Autowired
     private RabbitTemplate rabbitTemplate;
 
-    public void sendOrderTimeoutMessage(Long orderId, String orderType){
+    public void sendOrderTimeoutMessage(Long orderId){
         OrderTimeoutMessage message = new OrderTimeoutMessage();
 
         message.setOrderId(orderId);
-        message.setOrderType(orderType);
 
         rabbitTemplate.convertAndSend(
-                RabbitMQConfig.ORDER_DELAY_EXCHANGE,
-                RabbitMQConfig.ORDER_DELAY_ROUTING_KEY,
+                RabbitMQConfig.NORMAL_ORDER_DELAY_EXCHANGE,
+                RabbitMQConfig.NORMAL_ORDER_DELAY_ROUTING_KEY,
                 message
         );
 
-        System.out.println("发送订单超时消息：orderId=" + orderId + ", type=" + orderType + ", 将在15分钟后检查");
+        System.out.println("发送订单超时消息：orderId=" + orderId + ", type=普通订单"  + ", 将在15分钟后检查");
 
     }
 }

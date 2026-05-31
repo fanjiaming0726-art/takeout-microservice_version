@@ -5,11 +5,8 @@ import com.example.orderservice.mq.message.OrderTimeoutMessage;
 import com.example.orderservice.config.RabbitMQConfig;
 import com.example.orderservice.entity.OrderDetail;
 import com.example.orderservice.entity.Orders;
-import com.example.orderservice.entity.SeckillOrder;
 import com.example.orderservice.mapper.OrderDetailMapper;
 import com.example.orderservice.mapper.OrdersMapper;
-import com.example.orderservice.mapper.SeckillActivityMapper;
-import com.example.orderservice.mapper.SeckillOrderMapper;
 import com.example.orderservice.service.DishService;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,26 +27,15 @@ public class OrderTimeoutConsumer {
     @Autowired
     private DishService dishService;
 
-    @Autowired
-    private SeckillOrderMapper seckillOrderMapper;
 
-    @Autowired
-    private SeckillActivityMapper seckillActivityMapper;
-
-    @RabbitListener(queues = RabbitMQConfig.ORDER_DLX_QUEUE)
+    @RabbitListener(queues = RabbitMQConfig.NORMAL_ORDER_DLX_QUEUE)
     @Transactional
     public void handleOrderTimeout(OrderTimeoutMessage message){
 
         Long orderId = message.getOrderId();
-        String orderType = message.getOrderType();
+        System.out.println("收到超时检查消息：orderId=" + orderId + ", type=普通订单");
+        handleNormalOrder(orderId);
 
-        System.out.println("收到超时检查消息：orderId=" + orderId + ", type=" + orderType);
-
-        if(orderType.equals("NORMAL")){
-            handleNormalOrder(orderId);
-        }else if(orderType.equals("SECKILL")){
-            handleSeckillOrder(orderId);
-        }
 
     }
 
@@ -79,25 +65,7 @@ public class OrderTimeoutConsumer {
 
     }
 
-    private void handleSeckillOrder(Long seckillOrderId){
-        SeckillOrder seckillOrder = seckillOrderMapper.selectById(seckillOrderId);
 
-        if(seckillOrder == null){
-            return;
-        }
-
-        if(seckillOrder.getStatus() != 0){
-            return;
-        }
-
-        seckillOrder.setStatus(2);
-        seckillOrderMapper.updateById(seckillOrder);
-
-        seckillActivityMapper.restoreStock(seckillOrder.getActivityId());
-
-        System.out.println("秒杀订单超时取消成功：orderId=" + seckillOrderId);
-
-    }
 
 
 }

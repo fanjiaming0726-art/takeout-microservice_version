@@ -29,7 +29,6 @@ public class CustomerAddressController {
     @LoginRequired("CUSTOMER")
     @PutMapping
     public Result<String> update(@RequestBody AddressBook addressBook){
-        Long userId = UserContext.getUserId();
         addressBookService.updateAddress(addressBook);
         return Result.success("修改成功");
 
@@ -38,7 +37,6 @@ public class CustomerAddressController {
     @LoginRequired("CUSTOMER")
     @DeleteMapping
     public Result<String> delete(@RequestBody AddressBook addressBook){
-        Long userId = UserContext.getUserId();
         addressBookService.deleteAddress(addressBook.getId());
         return Result.success("删除成功");
     }
@@ -54,7 +52,6 @@ public class CustomerAddressController {
     @LoginRequired("CUSTOMER")
     @GetMapping("/{id}")
     public Result<AddressBook> get(@PathVariable Long id){
-        Long userId = UserContext.getUserId();
         AddressBook addressBook = addressBookService.findById(id);
         return Result.success(addressBook);
     }
@@ -64,7 +61,6 @@ public class CustomerAddressController {
     @PutMapping("/default")
     public Result<AddressBook> setDefault(@RequestBody AddressBook addressBook){
         Long userId = UserContext.getUserId();
-
         addressBookService.clearDefaultByUserId(userId);
         addressBook.setIsDefault(1);
         addressBookService.updateAddress(addressBook);

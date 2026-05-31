@@ -1,7 +1,7 @@
-package com.example.orderservice.mapper;
+package com.example.seckillservice.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.example.orderservice.entity.SeckillActivity;
+import com.example.seckillservice.entity.SeckillActivity;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Update;

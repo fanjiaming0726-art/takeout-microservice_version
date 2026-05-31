@@ -18,6 +18,7 @@
         <module>user-service</module>
         <module>product-service</module>
         <module>order-service</module>
+        <module>seckill-service</module>
     </modules>
 
     <properties>

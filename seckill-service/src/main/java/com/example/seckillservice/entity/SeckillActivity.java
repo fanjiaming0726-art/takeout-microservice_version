@@ -1,4 +1,4 @@
-package com.example.orderservice.entity;
+package com.example.seckillservice.entity;
 
 import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.IdType;
