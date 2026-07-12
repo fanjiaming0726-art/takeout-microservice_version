@@ -25,8 +25,8 @@ public class SellerOrderController {
 
     // 只放 sellerList 这个方法
     @LoginRequired("EMPLOYEE")
-    @GetMapping("/sellerList")
-    public Result<List<OrdersVO>> sellerList(@RequestParam(required = false) Integer status ){
+    @GetMapping("/ordersList")
+    public Result<List<OrdersVO>> ordersList(@RequestParam(required = false) Integer status ){
         List<Orders> ordersList = ordersService.findAll(status);
 
         List<OrdersVO> voList = ordersList.stream().map(order ->{

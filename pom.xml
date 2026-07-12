@@ -25,7 +25,9 @@
         <java.version>17</java.version>
         <spring.boot.version>3.2.12</spring.boot.version>
         <spring.cloud.version>2023.0.3</spring.cloud.version>
+        <spring.cloud.alibaba.version>2023.0.1.0</spring.cloud.alibaba.version>
         <mybatis.plus.version>3.5.15</mybatis.plus.version>
+        <canal.version>1.1.7</canal.version>
         <knife4j.version>4.5.0</knife4j.version>
         <lombok.version>1.18.32</lombok.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -51,6 +53,15 @@
                 <scope>import</scope>
             </dependency>
 
+            <!-- Spring Cloud Alibaba: Sentinel -->
+            <dependency>
+                <groupId>com.alibaba.cloud</groupId>
+                <artifactId>spring-cloud-alibaba-dependencies</artifactId>
+                <version>${spring.cloud.alibaba.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
             <!-- MyBatis-Plus -->
             <dependency>
                 <groupId>com.baomidou</groupId>
@@ -62,6 +73,13 @@
                 <groupId>com.baomidou</groupId>
                 <artifactId>mybatis-plus-jsqlparser</artifactId>
                 <version>${mybatis.plus.version}</version>
+            </dependency>
+
+            <!-- Canal client -->
+            <dependency>
+                <groupId>com.alibaba.otter</groupId>
+                <artifactId>canal.client</artifactId>
+                <version>${canal.version}</version>
             </dependency>
 
             <!-- Knife4j -->

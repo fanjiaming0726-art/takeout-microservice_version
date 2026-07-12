@@ -1,4 +1,4 @@
-package com.example.userservice.controller;
+package com.example.userservice.controller.seller;
 
 import com.example.commonservice.annotation.LoginRequired;
 import com.example.commonservice.context.UserContext;

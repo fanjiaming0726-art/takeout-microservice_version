@@ -37,6 +37,7 @@ public class CustomerAddressController {
     @LoginRequired("CUSTOMER")
     @DeleteMapping
     public Result<String> delete(@RequestBody AddressBook addressBook){
+        System.out.println("这个地址的id是" + addressBook.getId());
         addressBookService.deleteAddress(addressBook.getId());
         return Result.success("删除成功");
     }

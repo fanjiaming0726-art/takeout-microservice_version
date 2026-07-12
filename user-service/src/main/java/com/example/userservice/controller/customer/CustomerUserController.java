@@ -1,4 +1,4 @@
-package com.example.userservice.controller;
+package com.example.userservice.controller.customer;
 
 
 import com.example.commonservice.annotation.LoginRequired;
@@ -25,8 +25,6 @@ public class CustomerUserController  {
     public Result<String> register(@RequestBody User user){
         // 查重名
         String username = user.getUsername();
-
-
 
         User existUser = userService.findByUsername(username);
 
